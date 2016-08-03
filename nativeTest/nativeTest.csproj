@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GnSDKObjC.framework.linkwith.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -42,10 +43,13 @@
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="libs\GnSDKObjC.framework">
+<!--  <ItemGroup>
+    <ObjcBindingNativeFramework Include="libs\GnSDKObjC.framework" />
+  </ItemGroup>-->
+<ItemGroup>
+    <NativeReference Include="..\..\..\..\..\Library\Frameworks\GnSDKObjC.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <SmartLink>true</SmartLink>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

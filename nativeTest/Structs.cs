@@ -262,5 +262,357 @@ namespace nativeTest
 	    kFingerprintTypeGNFPX =5
 	    
 	}
+
+	public enum GnLicenseInputMode: int
+	{
+	    kLicenseInputModeInvalid = 0,
+	    
+	    /**
+	    * Submit license content as string
+	    */
+	    kLicenseInputModeString = 1,
+	    
+	    /**
+	    * Submit license content in file
+	    */
+	    kLicenseInputModeFilename = 2,
+	    
+	    /**
+	    * Submit license content from stdin
+	    */
+	    kLicenseInputModeStandardIn = 3
+	} 
+
+	public enum GnMusicIdStreamPreset: int
+	{
+	    kPresetInvalid = 0,
+	    
+	    /** Application type mobile, i.e. audio is captured by microphone
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kPresetMicrophone = 1,
+	    
+	    /** Application type radio, i.e. audio is captured at source (e.g. speaker)
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kPresetRadio = 2
+	}
+
+
+	public enum GnMusicIdStreamProcessingStatus: int
+	{
+	    kStatusProcessingInvalid = 0,
+	    
+	    kStatusProcessingAudioNone = 1,
+	    kStatusProcessingAudioSilence = 2,
+	    kStatusProcessingAudioNoise = 3,
+	    kStatusProcessingAudioSpeech = 4,
+	    kStatusProcessingAudioMusic = 5,
+	    
+	    kStatusProcessingTransitionNone = 6,
+	    kStatusProcessingTransitionChannelChange = 7,
+	    kStatusProcessingTransitionContentToContent = 8,
+	    
+	    kStatusProcessingErrorNoClassifier = 9,
+	    
+	    kStatusProcessingAudioStarted = 10,
+	    kStatusProcessingAudioEnded = 11
+	}
+
+	public enum GnLookupMode : int
+	{
+	    /**
+	    * Invalid lookup mode
+	    */
+	    kLookupModeInvalid = 0,
+	    
+	    /**
+	    * This mode forces the lookup to be done against the local database only. Local caches created from (online) query
+	    * results are not queried in this mode.
+	    * If no local database exists, the query will fail.
+	    */
+	    kLookupModeLocal = 1,
+	    
+	    /**
+	    * This is the default lookup mode. If a cache exists, the query checks it first for a match.
+	    * If a no match is found in the cache, then an online query is performed against Gracenote Service.
+	    * If a result is found there, it is stored in the local cache.  If no online provider exists, the query will fail.
+	    * The length of time before cache lookup query expires can be set via the user object.
+	    */
+	    kLookupModeOnline = 2,
+	    
+	    /**
+	    * This mode forces the query to be done online only and will not perform a local cache lookup first.
+	    * If no online provider exists, the query will fail. In this mode online queries and lists are not
+	    * written to local storage, even if a storage provider has been initialize.
+	    */
+	    kLookupModeOnlineNoCache = 3,
+	    
+	    /**
+	    * This mode forces the query to be done online only and will not perform a local cache lookup first.
+	    * If no online provider exists, the query will fail. If a storage provider has been initialized,
+	    * queries and lists are immediately written to local storage, but are never read unless the lookup mode is changed.
+	    */
+	    kLookupModeOnlineNoCacheRead = 4,
+	    
+	    /**
+	    * This mode forces the query to be done against the online cache only and will not perform a network lookup.
+	    * If no online provider exists, the query will fail.
+	    */
+	    kLookupModeOnlineCacheOnly = 5
+	    
+	}
+
+	public enum GnMusicIdStreamIdentifyingStatus : int
+	{
+	    /** Invalid status
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingInvalid = 0,
+	    
+	    
+	    /** Identification query started
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingStarted = 1,
+	    
+	    /** Fingerprint generated for sample audio
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingFpGenerated = 2,
+	    
+	    /** Local query started for identification
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingLocalQueryStarted = 3,
+	    
+	    /** Local query ended for identification
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingLocalQueryEnded = 4,
+	    
+	    /** Online query started for identification
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingOnlineQueryStarted = 5,
+	    
+	    /** Online query ended for identification
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingOnlineQueryEnded = 6,
+	    
+	    /** Identification query ended
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingEnded = 7,
+	    
+	    /** Identification query completed with existing match
+	    * @ingroup Music_MusicIDStream_TypesEnums
+	    */
+	    kStatusIdentifyingNoNewResult = 8
+	    
+	}
+
+	public enum GnLookupData : int
+	{
+	    /**
+	    * Invalid lookup data
+	    */
+	    kLookupDataInvalid = 0,
+	    
+	    /**
+	    * Indicates whether a response should include data for use in fetching content (like images).
+	    * <p><b>Remarks:</b></p>
+	    * An application's client ID must be entitled to retrieve this specialized data. Contact your
+	    *	Gracenote representative with any questions about this enhanced
+	    *	functionality.
+	    */
+	    kLookupDataContent = 1,
+	    
+	    /**
+	    * Indicates whether a response should include any associated classical music data.
+	    * <p><b>Remarks:</b></p>
+	    * An application's license must be entitled to retrieve this specialized data. Contact your
+	    * Gracenote representative with any questions about this enhanced functionality.
+	    */
+	    kLookupDataClassical = 2,
+	    
+	    /**
+	    * Indicates whether a response should include any associated sonic attribute data.
+	    * <p><b>Remarks:</b></p>
+	    * An application's license must be entitled to retrieve this specialized data. Contact your
+	    * Gracenote representative with any questions about this enhanced functionality.
+	    */
+	    kLookupDataSonicData = 3,
+	    
+	    /**
+	    * Indicates whether a response should include associated attribute data for GNSDK Playlist.
+	    * <p><b>Remarks:</b></p>
+	    * An application's license must be entitled to retrieve this specialized data. Contact your
+	    * Gracenote representative with any questions about this enhanced functionality.
+	    */
+	    kLookupDataPlaylist = 4,
+	    
+	    /**
+	    * Indicates whether a response should include external IDs (third-party IDs).
+	    * <p><b>Remarks:</b></p>
+	    * External IDs are third-party IDs associated with the results (such as an Amazon ID),
+	    *	configured specifically for your application.
+	    * An application's client ID must be entitled to retrieve this specialized data. Contact your
+	    * Gracenote representative with any questions about this enhanced functionality.
+	    * External IDs can be retrieved from applicable query response objects.
+	    */
+	    kLookupDataExternalIds = 5,
+	    
+	    /**
+	    * Indicates whether a response should include global IDs.
+	    */
+	    kLookupDataGlobalIds = 6,
+	    
+	    /**
+	    * Indicates whether a response should include additional credits.
+	    */
+	    kLookupDataAdditionalCredits = 7,
+	    
+	    /**
+	    * Indicates whether a response should include sortable data for names and titles
+	    */
+	    kLookupDataSortable = 8	    
+	}
+
+	public enum GnDataLevel: int
+	{
+	    kDataLevelInvalid = 0,
+	    
+	    kDataLevel_1      = 1,  /* least granular */
+	    kDataLevel_2 = 2,
+	    kDataLevel_3 = 3,
+	    kDataLevel_4 =4           /* most granular */
+	    
+	}
+
+
+	public enum GnContentType: int
+	{
+	    kContentTypeNull = 0,
+	    kContentTypeUnknown = 1,
+	    
+	    kContentTypeImageCover = 2,
+	    kContentTypeImageArtist = 3,
+	    kContentTypeImageVideo = 4,
+	    kContentTypeImageLogo = 5,
+	    kContentTypeBiography =6,
+	    kContentTypeReview = 7,
+	    kContentTypeNews = 8,
+	    kContentTypeArtistNews = 9,
+	    kContentTypeListenerComments = 10,
+	    kContentTypeReleaseComments = 11
+	} 
+
+	public enum GnLogPackageType: int
+	{
+	    kLogPackageInternal	=  1,
+	    kLogPackageManager	=  2,
+	    kLogPackageMusicID = 3,
+	    kLogPackageMusicIDFile = 4,
+	    kLogPackageLink	= 5,
+	    kLogPackageVideoID = 6,
+	    kLogPackageSubmit = 7,
+	    kLogPackagePlaylist = 8,
+	    kLogPackageStorageSqlite = 9,
+	    kLogPackageDsp = 10,
+	    kLogPackageMusicIdMatch	= 11,
+	    kLogPackageAcr = 12,
+	    kLogPackageLookupLocal = 13,
+	    kLogPackageEDBInstall = 14,
+	    kLogPackageEPG = 15,
+	    kLogPackageMoodGrid = 16,
+	    kLogPackageStorageQNX = 17,
+	    kLogPackageLookupFPLocal = 18,
+	    kLogPackageCorrelates = 19,
+	    kLogPackageTaste = 20,
+	    kLogPackageMusicIDStream = 21,
+	    kLogPackageLookupLocalStream = 22,
+	    kLogPackageRhythm = 23,
+	    kLogPackageAllGNSDK = 24,
+	    kLogPackageAll = 25
+	} 
+
+	public enum GnLocalStreamEngineType: int
+	{
+	    kLocalStreamEngineInvalid = 0,
+	    
+	    kLocalStreamEngineMMap = 1,
+	    kLocalStreamEngineInMemory = 2
+	}
+
+	public enum GnLookupLocalStreamIngestStatus : int
+	{
+	    kIngestStatusInvalid = 0,
+	    kIngestStatusItemBegin = 1,
+	    kIngestStatusItemAdd = 2,
+	    kIngestStatusItemDelete = 3
+	} 
+
+    public enum GnMusicIdFileInfoStatus : int
+    {
+        kMusicIdFileInfoStatusUnprocessed  = 0,
+
+        kMusicIdFileInfoStatusProcessing   = 1,
+
+        kMusicIdFileInfoStatusError      = 2,
+
+        kMusicIdFileInfoStatusResultNone   = 3,
+
+        kMusicIdFileInfoStatusResultSingle = 4,
+
+        kMusicIdFileInfoStatusResultAll  = 5     
+    } 
+
+    public enum GnMusicIdFileCallbackStatus : int
+    {
+        kMusicIdFileCallbackStatusProcessingBegin    = 0x100,
+ 
+        kMusicIdFileCallbackStatusFileInfoQuery      = 0x150,
+
+        kMusicIdFileCallbackStatusProcessingComplete = 0x199,
+
+        kMusicIdFileCallbackStatusProcessingError    = 0x299,
+
+        kMusicIdFileCallbackStatusError              = 0x999
+        
+    }
+
+    public enum GnMusicIdFileProcessType : int
+    {
+        kQueryReturnSingle = 1,
+        kQueryReturnAll = 2
+    } 
+
+    public enum GnMusicIdFileResponseType : int
+    {
+        kResponseAlbums = 1,
+        kResponseMatches = 2
+        
+    } 
+
+
+    public enum GnThreadPriority : int
+    {
+        kThreadPriorityInvalid = 0,
+
+        kThreadPriorityDefault = 1,
+        
+        kThreadPriorityIdle = 2,
+        
+        kThreadPriorityLow = 3,
+        
+        kThreadPriorityNormal = 4,
+        
+        kThreadPriorityHigh = 5
+        
+    } 
+
+
 }
 
